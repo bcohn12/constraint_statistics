@@ -1,8 +1,9 @@
 ---
 title: "Point Constraint Statistics"
 output:
-  pdf_document: default
+  html_document: default
   html_notebook: default
+  pdf_document: default
 ---
 Commands:
 Run selected chunk: *Cmd+Shift+Enter*. 
@@ -93,24 +94,39 @@ generate_parcoord_plot_with_costs(points_dataframe = points_db_80, fraction_of_m
 ```
 #View all points as boxplots:
 ```{r, echo=FALSE}
-boxplot(points_db_80[,1:7], xlab="Muscle", ylab="Activation", col="lightblue", main="all 1000 solutions that perform an 80% distal fingertip force")
-lo_cost_summary <- summary(points_db_80[,1:7])
+alldata <- points_db_80[,1:7]
+colnames(alldata) <- my_column_names[1:7]
+boxplot(alldata, xlab="Muscle", ylab="Activation", col="lightblue", main="all 1000 solutions that perform an 80% distal fingertip force")
+lo_cost_summary <- summary(alldata)
 print(lo_cost_summary)
 ```
-#Let's grab the bottom 50% of L2W cost and see how the muscle activations are distributed
+
+#what about parcoord axes being parallel (few line crossings between muscle actiavtions)?
+```{r, echo=TRUE}
+cor(points_w_cost$FDP, points_w_cost$FDS)
+```
+#what about many crossings between two muscles?
+```{r, echo=TRUE}
+cor(points_w_cost$LUM, points_w_cost$DI)
+```
+```{r, echo=TRUE}
+cor(points_w_cost$EIP, points_w_cost$EDC)
+```
+```{r}
+library(corrplot)
+corrplot(cor(points_w_cost), order = "hclust", addrect=5)
+```
+
+
+#Let's grab the bottom 10% of L2W cost and see how the muscle activations are distributed
 
 ```{r,echo=FALSE}
 total_points <- length(points_w_cost[,1])
-remaining_points <- points_w_cost[points_w_cost$L2W < median(points_w_cost$L2W),]
-boxplot(remaining_points[,1:7], xlab="Muscle", ylab="Activation", col="lightblue", main="Bottom 500 L2W Solutions")
+remaining_points <- points_w_cost[order(points_w_cost$L2W),][1:100,]
+boxplot(remaining_points[,1:7], xlab="Muscle", ylab="Activation", col="lightblue", main="Bottom 100 L2W Solutions",ylim=c(0,1))
 lo_cost_summary <- summary(remaining_points[,1:7])
 print(lo_cost_summary)
 ```
-##Observations:
-- PI still has solutions between 0 and 0.3, DI between 0 and .4, 
-- LUM, EIP has solutions between 0 and 1
-- FDS highly constrained to 0-.12
-- FDP between 0 and .3
 
 
 # Limiting one muscle:
@@ -166,18 +182,18 @@ library(reshape2)
 pre_and_post_meltdb <- function(pre_df, post_df, constraint_str= "after constraints"){
 #assemble post
 post_melt<- melt(post_df)
-post_melt$group <- "original"
+post_melt$group <- constraint_str
 #assemble pre
 colnames(pre_df) <- my_column_names[1:7]
 full_melt <- melt(pre_df)
-full_melt$group <- constraint_str
+full_melt$group <- "original"
 #concatenate
 pre_and_post <- rbind(post_melt, full_melt)
 
 library(ggplot2)
 p<- ggplot(pre_and_post, aes(x = variable, y = value, fill = group)) +
   geom_boxplot() +
-  scale_fill_manual(values = c("yellow", "orange"))
+  scale_fill_manual(values = c("lightblue", "grey"))
 return(p)
 }
 
