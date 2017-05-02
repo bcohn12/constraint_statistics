@@ -166,20 +166,22 @@ library(reshape2)
 pre_and_post_meltdb <- function(pre_df, post_df, constraint_str= "after constraints"){
 #assemble post
 post_melt<- melt(post_df)
-post_melt$group <- constraint_str
+post_melt$group <- "original"
 #assemble pre
-full_melt <- melt(post_df)
-full_melt$group <- "original"
+colnames(pre_df) <- my_column_names[1:7]
+full_melt <- melt(pre_df)
+full_melt$group <- constraint_str
 #concatenate
 pre_and_post <- rbind(post_melt, full_melt)
-browser()
+
 library(ggplot2)
 p<- ggplot(pre_and_post, aes(x = variable, y = value, fill = group)) +
   geom_boxplot() +
   scale_fill_manual(values = c("yellow", "orange"))
 return(p)
 }
-pre_and_post_meltdb(points_db_80, DI_reduced, "DI reduced")
+
+pre_and_post_meltdb(points_db_80[,1:7], DI_reduced[,1:7], "DI reduced")
 
 boxplot(DI_reduced[,1:7], xlab="Muscle", ylab="Activation", col="lightblue", main=paste(len_remaining, "/1000 solutions remain when DI kept below 0.2"))
 lo_cost_summary <- summary(DI_reduced[,1:7])
