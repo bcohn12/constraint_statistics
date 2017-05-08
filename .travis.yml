@@ -15,8 +15,8 @@ install:
   - ./travis-tool.sh install_r knitr
   - ./travis-tool.sh install_r markdown
   - pip install dropbox
-  - apt-get install pandoc
-  - apt-get install texlive-latex-base
+  - sudo apt-get install pandoc
+  - sudo apt-get install texlive-latex-base
 
 script:
   - Rscript -e "source('pdfProcessing.r')"
