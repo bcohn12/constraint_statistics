@@ -19,7 +19,7 @@ install:
 
 script:
   #- Rscript -e "library(testthat);test_dir('.')"
-  - Rscript -e "source('pdfProcessing.r')""
+  - Rscript -e "source('pdfProcessing.r')"
   - python upload.py
 
 notifications:
