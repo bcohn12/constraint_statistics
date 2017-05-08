@@ -1,10 +1,10 @@
 import dropbox
 import sys
-
+"""
 file1 = open("output.txt", "r") 
 pdffile = file1.readline().strip()
 file1.close()
-
+"""
 information_list = []
 file = open("information.txt", "r")
 for line in file:
