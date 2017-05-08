@@ -6,7 +6,7 @@ pdffile = file1.readline().strip()
 file1.close()
 """
 information_list = []
-file = open("infomation.txt", "r")
+file = open("information.txt", "r")
 for line in file:
 	information_list.append(line)
 file.close()
