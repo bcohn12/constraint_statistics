@@ -6,7 +6,7 @@ pdffile = file1.readline().strip()
 file1.close()
 """
 information_list = []
-file = open("information.txt", "r")
+file = open("infomation.txt", "r")
 for line in file:
 	information_list.append(line)
 file.close()
@@ -16,6 +16,6 @@ print 'linked account : ', client.account_info()
 
 #realfilename = pdffile[7:]
 realfilename = "main.pdf"
-f = open(pdffile, 'rb')
+f = open(realfilename, 'rb')
 response = client.put_file('/UploadingPractice/'+realfilename,f)
 print 'uploaded:', response
