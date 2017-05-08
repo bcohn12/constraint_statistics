@@ -5,6 +5,6 @@ require(markdown)
 knit("main.Rmd")
 
 #Creating PDF 
-markdownToHTML('main.rmd', 'main.html', options=c("use_xhml"))
+markdownToHTML('main.Rmd', 'main.html', options=c("use_xhml"))
 system("pandoc -s main.html -o main.pdf")
 
