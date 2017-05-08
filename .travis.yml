@@ -15,10 +15,10 @@ install:
   - ./travis-tool.sh install_r knitr
   - ./travis-tool.sh install_r markdown
   - pip install dropbox
-  - sudo apt-get install pandoc
+  - apt-get install pandoc
+  - apt-get install texlive-latex-base
 
 script:
-  #- Rscript -e "library(testthat);test_dir('.')"
   - Rscript -e "source('pdfProcessing.r')"
   - python upload.py
 
