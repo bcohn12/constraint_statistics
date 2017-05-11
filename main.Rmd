@@ -92,6 +92,7 @@ generate_parcoord_plot_with_costs(points_dataframe = points_db_80, fraction_of_m
                     "L2W",
                     "TaskForce"), fmax_vector)
 ```
+
 #View all points as boxplots:
 ```{r, echo=FALSE}
 alldata <- points_db_80[,1:7]
@@ -198,11 +199,12 @@ return(p)
 }
 
 pre_and_post_meltdb(points_db_80[,1:7], DI_reduced[,1:7], "DI reduced")
-
-boxplot(DI_reduced[,1:7], xlab="Muscle", ylab="Activation", col="lightblue", main=paste(len_remaining, "/1000 solutions remain when DI kept below 0.2"))
-lo_cost_summary <- summary(DI_reduced[,1:7])
-print(lo_cost_summary)
+## // duplicate 
+##boxplot(DI_reduced[,1:7], xlab="Muscle", ylab="Activation", col="lightblue", main=paste(len_remaining, "/1000 solutions remain when DI kept below 0.2"))
+##lo_cost_summary <- summary(DI_reduced[,1:7])
+##print(lo_cost_summary)
 ```
+
 #showing the wide bounds with small IQR for a muscle at higher force (not 80%)
 ```{r}
 high_force_points <- read.csv("finger_forcevector_25.379547626496084_1484881649920.csv")

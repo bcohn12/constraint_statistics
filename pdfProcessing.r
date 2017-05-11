@@ -1,10 +1,9 @@
 #Produce PDF
 require(knitr)
 require(markdown)
-#Run the PDF
-knit("main.Rmd")
+library("rmarkdown")
 
-#Creating PDF 
-markdownToHTML('main.Rmd', 'main.html', options=c("use_xhml"))
-system("pandoc -s main.html -o main.pdf")
-
+#Compile R Markdown and create html
+render("main.Rmd")
+#Create PDF from html
+system("pandoc -s main.html -V geometry:margin=0.5in -o main.pdf")
