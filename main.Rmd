@@ -206,10 +206,7 @@ pre_and_post_meltdb(points_db_80[,1:7], DI_reduced[,1:7], "DI reduced")
 ```
 
 #showing the wide bounds with small IQR for a muscle at higher force (not 80%)
-```{r}
-set_variable <- function(x) {
-  x
-}
+```{r,echo=FALSE, echo=FALSE, message=TRUE}
 high_force_points <- read.csv("finger_forcevector_25.379547626496084_1484881649920.csv")
 par(mfrow=c(3,3))
 names <- c("FDP","FDS","EIP","EDC","LUM","DI","PI")
