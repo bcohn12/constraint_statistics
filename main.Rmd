@@ -218,7 +218,7 @@ lapply(1:7,
         hist(high_force_points[,x], main = names[x], xlab="muscle activation", col = "black", xlim=c(0,1)) 
         summary(high_force_points[,x])  
         }
-       )
+      )
 
 ```
 
