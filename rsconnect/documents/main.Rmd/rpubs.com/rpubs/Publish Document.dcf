@@ -1,0 +1,8 @@
+name: Publish Document
+title:
+account: rpubs
+server: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/272638/4207714ca182437783bc5c1a526e8049
+bundleId: https://api.rpubs.com/api/v1/document/272638/4207714ca182437783bc5c1a526e8049
+url: http://rpubs.com/briancohn/272638
+when: 1493937092.83334

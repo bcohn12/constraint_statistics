@@ -1,9 +1,9 @@
 ---
 title: "Point Constraint Statistics"
 output:
-  html_document: default
-  html_notebook: default
   pdf_document: default
+  html_notebook: default
+  html_document: default
 ---
 Commands:
 Run selected chunk: *Cmd+Shift+Enter*. 
