@@ -12,11 +12,14 @@ before_install:
 install:
   - ./travis-tool.sh install_r testthat
   - ./travis-tool.sh install_r devtools
+  - ./travis-tool.sh install_r knitr
+  - ./travis-tool.sh install_r markdown
   - pip install dropbox
+  - sudo apt-get install pandoc
+  - sudo apt-get install texlive-latex-base
 
 script:
-  #- Rscript -e "library(testthat);test_dir('.')"
-  - Rscript -e "source('download.r')"
+  - Rscript -e "source('pdfProcessing.r')"
   - python upload.py
 
 notifications:
